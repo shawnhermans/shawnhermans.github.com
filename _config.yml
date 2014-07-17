@@ -1,7 +1,7 @@
 # Site settings
-title: Need a better title
+title: Shawn's Blog
 email: shawnhermans@gmail.com
-description: "My blog"
+description: "Shawn's crazy blog about data"
 url: "http://shawnhermans.github.io"
 twitter_username: shawnhermans
 github_username:  shawnhermans
@@ -9,3 +9,4 @@ github_username:  shawnhermans
 # Build settings
 markdown: kramdown
 permalink: pretty
+highlighter:    pygments
