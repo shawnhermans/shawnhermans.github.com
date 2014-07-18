@@ -5,14 +5,14 @@ description: "Introduction to Pig with Space Data"
 tags: [hadoop, pig, tle, space catalog] 
 ---
 
-# Introduction
+## Introduction
 
 Alas, the subject of this post is about using Apache Pig to process satellite orbit data.
 If you are an orbital analyst and want to know how to easily process data on a Hadoop cluster,
 this article is for you. If you are just interested in Pig, this post should give you a good idea of
 how to use Pig and write Jython-based Pig user defined functions.
 
-# Setting Up Pig
+## Setting Up Pig
 Pig can run in either local mode or Hadoop mode. I am not going to go into great detail on how to
 setup Pig using Hadoop mode. Hadoop mode requires a fully configured Hadoop cluster with MapReduce version 1.
 If you are using Cloudera or some other Hadoop distribution, I recommend using whatever release of Pig that comes
@@ -30,7 +30,7 @@ This directory is the `PIG_HOME` directory. Starting Pig in standalone mode is a
 command `$PIG_HOME/bin/pig -x local`. This will drop you into the Pig interactive shell Grunt.
 You are now ready to start processing some data in Pig!
 
-# Getting and Preparing the Data
+## Getting and Preparing the Data
 There are a few sources of orbital data available. [Space-Track.org](https://www.space-track.org/) hosts the
 full public catalog and contains
 roughly 14,000 objects. Access to this data requires registration and may not be readily accessible to all users.
@@ -82,7 +82,7 @@ After processing, the file now looks like this.
 
 The data is now in a Pig friendly format.
 
-# Loading the Data
+## Loading the Data
 Our first step is loading the data into Pig. I suggest creating a Pig workspace folder. Copy all data files and
 scripts into this directory. Then, while in this directory, execute `pig -x local`.
 
@@ -121,7 +121,7 @@ grunt > DUMP gps;
 .
 ```
 
-# Creating a Python User Defined Function
+## Creating a Python User Defined Function
 While the data is currently in Pig, it requires further parsing before we can do anything useful with it.
 The data is encoded in the positions within the string. For example, columns 15-17 in line 1 represent the
 international designator. Lines 45-52 are the second time derivative of mean motion divided by six with
@@ -371,7 +371,7 @@ grunt> DESCRIBE propagated;
 propagated: {satelliteNumber: int,time: double,x: double,y: double,z: double}
 ```
 
-# Conclusion
+## Conclusion
 Overall, Pig made it easy to process orbital data without needing to resort to cumbersome custom MapReduce code.
 It handles all the boring details of creating and scheduling MapReduce jobs.
 Pig is a valuable tool and will be a critical part of my data processing toolbox.

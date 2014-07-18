@@ -1,6 +1,6 @@
 ---
 layout: page
-title: About
+title: About Me
 ---
 Hi\! My name is Shawn Hermans. I live, work, and play in Omaha, NE with my 
 wife, [Jammie Hermans](http://jammiehermans.blogspot.com/), my four kids, Parker,
