@@ -1,0 +1,12 @@
+# Site settings
+title: Shawn's Blog
+email: shawnhermans@gmail.com
+description: "Shawn's wonder blog about data. More to follow.  "
+url: "http://shawnhermans.github.io/"
+twitter_username: shawnhermans
+github_username:  shawnhermans
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+highlighter: pygments
