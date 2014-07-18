@@ -26,15 +26,16 @@
           <div class="footer">
             <div class="contact">
               <p>
-                Your Name<br />
-                What You Are<br />
-                you@example.com
+                {{ site.contact.name }}<br />
+                {{ site.contact.email }}
               </p>
             </div>
             <div class="contact">
               <p>
-                <a href="https://github.com/yourusername">github.com/yourusername</a><br />
-                <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br />
+                <a href="https://github.com/{{ site.github_username }}">github.com/{{ site.contact.github }}</a><br />
+                <a href="https://twitter.com/{{ site.twitter_username }}">twitter.com/{{ site.contact.twitter }}</a><br />
+                <a href="http://www.linkedin.com/in/shawnhermans/">linkedin.com/in/{{ site.contact.linkedin }}</a><br />
+                <a href="http://www.quora.com/{{ site.contact.quora }}">quora.com/{{ site.contact.quora }}</a><br />
               </p>
             </div>
           </div>

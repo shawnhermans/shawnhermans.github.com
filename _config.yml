@@ -1,9 +1,14 @@
 name: Shawn's Blog
-email: shawnhermans@gmail.com
 description: "Shawn's wonder blog about data. More to follow.  "
 url: "http://shawnhermans.github.io/"
-twitter_username: shawnhermans
-github_username:  shawnhermans
+
+contact:
+  name: Shawn Hermans
+  github: shawnhermans
+  twitter: shawnhermans
+  linkedin: shawnhermans
+  quora: Shawn-Hermans
+  email: shawnhermans@gmail.com
 
 markdown: redcarpet
 pygments: true
