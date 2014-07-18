@@ -1,12 +1,19 @@
-# Site settings
-title: Shawn's Blog
-email: shawnhermans@gmail.com
-description: "Shawn's wonder blog about data. More to follow.  "
-url: "http://shawnhermans.github.io/"
-twitter_username: shawnhermans
-github_username:  shawnhermans
+# Dependencies
+markdown:         redcarpet
+pygments:         true
 
-# Build settings
-markdown: kramdown
-permalink: pretty
-highlighter: pygments
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Drowning in Data
+tagline:          'unstructured and denormalized'
+description:      "A blog about data and one man's struggle to make sense of it all."
+url:              http://shawnhermans.github.io
+baseurl:          /
+
+author:
+  name:           'Shawn Hermans'
+  url:            https://twitter.com/shawnhermans
+
+paginate:         5
