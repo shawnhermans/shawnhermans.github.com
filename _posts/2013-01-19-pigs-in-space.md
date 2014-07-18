@@ -56,7 +56,7 @@ I could develop a custom Pig file loader, but that will have to wait for a later
 I created a simple Python script to convert the traditional format into a Pig friendly
 tab-separated value format.
 
-{% highlight python %}
+```python
 f_out = open('gps-ops.tsv', 'wb')
 output_line = ''
 
@@ -70,7 +70,7 @@ with open('gps-ops.txt') as f:
 			output_line = ''
 
 f_out.close()
-{% endhighlight %}
+```
 
 After processing, the file now looks like this.
 
@@ -86,10 +86,10 @@ The data is now in a Pig friendly format.
 Our first step is loading the data into Pig. I suggest creating a Pig workspace folder. Copy all data files and
 scripts into this directory. Then, while in this directory, execute `pig -x local`.
 
-{% highlight pig %}
+```pig
 grunt> gps = LOAD 'gps-ops.tsv' USING PigStorage()
     AS (name:chararray, line1:chararray, line2:chararray);
-{% endhighlight %}
+```
 
 This statement creates a relation called `gps`. It loads data from the local file `gps-ops.tsv`.
 `PigStorage()` looks for the data on the local file system if in local mode.
@@ -104,14 +104,14 @@ At this point, let’s see what Pig has actually done.
 The `DESCRIBE` command will tell us information on the relation.
 This is not too useful right now, but comes in handy when dealing with derived relationships.
 
-{% highlight pig %}
+```pig
 grunt > DESCRIBE gps;
 gps: {name: chararray,line1: chararray,line2: chararray}
-{% endhighlight %}
+```
 
 We can take a look at the data using the DUMP command.
 
-{% highlight pig %}
+```pig
 grunt > DUMP gps;
 
 (GPS BIIA-10 (PRN 32),1 ... -3 0  8413,2 ...  2.00550870162199)
@@ -119,7 +119,7 @@ grunt > DUMP gps;
 .
 .
 .
-{% endhighlight %}
+```
 
 # Creating a Python User Defined Function
 While the data is currently in Pig, it requires further parsing before we can do anything useful with it.
@@ -140,7 +140,7 @@ libraries. I will demonstrate this feature later on.
 I created a simple UDF called parseTle that takes in the name, line1, and line2 data and parses it into a map.
 A map is one of Pig’s complex data types and is equivalent to a Python dictionary.
 
-{% highlight python %}
+```python
 import tleparser
 
 @outputSchema("params:map[]")
@@ -148,7 +148,7 @@ def parseTle(name, line1, line2):
     params = tleparser.parse_tle(name, line1, line2)
     return params
 
-{% endhighlight %}
+```
 
 The UDF is pretty simple to understand. It imports an external library called
 [tleparser](https://gist.github.com/shawnhermans/4569360) to do most of the heavy lifting.
@@ -156,17 +156,17 @@ The `@outputSchema("params:map[]")` annotation tells Pig this function outputs a
 The easiest way to use this UDF is to place the UDF script and all dependencies in the working folder.
 Create the files `tleUDFs.py` and `tleparser.py` in this folder and restart the Grunt console.
 
-{% highlight pig %}
+```pig
 grunt> gps = LOAD 'gps-ops.tsv' USING PigStorage()
     AS (name:chararray, line1:chararray, line2:chararray);
 grunt> REGISTER 'tleUDFs.py' USING jython AS myfuncs;
 The parseTle UDF is available to Pig under the myfuncs namespace
 grunt> parsed = FOREACH gps GENERATE myfuncs.parseTle(*);
-{% endhighlight %}
+```
 This Pig command goes through each of the relations in gps and applies the `parseTle` UDF.
 The parsed data is now a map of key/value pairs. The following is an example parsed TLE data.
 
-{% highlight pig %}
+```pig
 (
     [bstar#,arg_of_perigee#333.0924,mean_motion#2.00559335,
     element_number#72,epoch_year#2013,inclination#54.9673,
@@ -175,21 +175,21 @@ The parsed data is now a map of key/value pairs. The following is an example par
     classification#U,epoch_day#17.78040066,satellite_number#38833,
     name#GPS BIIF-3  (PRN 24),mean_motion_dot#-1.8E-6,ra_of_asc_node#344.5315]
 )
-{% endhighlight %}
+```
 
 Pig uses the `#` character to separate key/value pairs.
 Having the data parsed, means we can use the power of Pig to filter, process, and otherwise manipulate it.
 The following is an example of using the `FILTER` command to find all orbits with inclination between 53 and 56.
 
-{% highlight pig %}
+```pig
 filtered = FILTER parsed BY (params#'inclination' > 53) AND (params#'inclination' < 56);
-{% endhighlight %}
+```
 
 At this point, we can store the results of this processing to the filesystem using the `STORE` command.
 
-{% highlight pig %}
+```pig
 STORE filtered into '/tmp/filtered' using PigStorage();
-{% endhighlight %}
+```
 
 After running this command, there should be a folder named `/tmp/filtered` with a file called part-m-00000.
 For larger data sets with more reducers, this folder will contain multiple files using the same naming convention.
@@ -206,7 +206,7 @@ To create really useful scripts we want to vary certain parameters at runtime.
 This is accomplished using Pig parameter substitution. Save the previous commands into a file called `filter.pig`,
 but change the last line to include the following.
 
-{% highlight pig %}
+```pig
 REGISTER 'tleUDFs.py' USING jython AS tleUDFs;
 
 gps = LOAD '$input' USING PigStorage() AS (name:chararray, line1:chararray, line2:chararray);
@@ -217,7 +217,7 @@ filtered = FILTER parsed BY
     (params#'inclination' < $upperInclination);
 
 STORE filtered into '$output' using PigStorage();
-{% endhighlight %}
+```
 
 This allows the user to pass in lower and upper inclination bounds. It also stores the
 results into a user defined output directory. We pass those parameters using the commandline `-param` option.
@@ -245,7 +245,7 @@ the [JSatTrak binary distribution](http://www.gano.name/shawn/JSatTrak/bin_relea
 Next copy the JARs from this distribution somewhere onto the Pig classpath.
 The easiest way to do this is copying the JARs into the `$PIG_HOME/lib` directory.
 
-{% highlight python %}
+```python
 from jsattrak.objects import SatelliteTleSGP4
 
 @outputSchema("propagated:bag{positions:tuple(time:double, x:double, y:double, z:double)}")
@@ -271,7 +271,7 @@ def propagateTleECEF(name,line1,line2,start_time,end_time,number_of_points):
         current_time += increment
 
     return ecef_positions
-{% endhighlight %}
+```
 
 This UDF takes a start time, end time and the number of desired points and outputs a bag of tuples.
 A bag is similar to a Python list with the exception that bags in Pig are always unordered.
@@ -280,7 +280,7 @@ Tuples in Pig are like tuples in Python. They are immutable and ordered.
 After adding the JARs to the classpath and adding the `propagateTleECEF`
 function to `tleUDFs.py`, we are ready to propagate some orbits.
 
-{% highlight pig %}
+```pig
 grunt > REGISTER 'tleUDFs.py' USING jython AS myfuncs;
 grunt> gps = LOAD 'gps-ops.tsv' USING PigStorage()
     AS (name:chararray, line1:chararray, line2:chararray);
@@ -288,7 +288,7 @@ grunt> propagated = FOREACH gps GENERATE myfuncs.parseTle(name, line1, line2),
     myfuncs.propagateTleECEF(name, line1, line2, 2454992.0, 2454993.0, 100);
 grunt> flattened = FOREACH propagated GENERATE
     params#'satellite_number', FLATTEN(propagated);
-{% endhighlight %}
+```
 
 The third command propagates out points for each satellite while the fourth command
 flattens the results so that each position for each satellite is on its own line.
@@ -297,7 +297,7 @@ based on whether it is flattening a bag or a tuple. Tuples are flattened in plac
 generate additional relations. Bags are flattened into multiple additional relations.
 The `DESCRIBE` command shows the new structure of each relation.
 
-{% highlight pig %}
+```pig
 grunt> DESCRIBE propagated;
 propagated: {params: map[],propagated:
     {positions: (time: double,x: double,y: double,z: double)}}
@@ -305,20 +305,20 @@ grunt> DESCRIBE flattened;
 flattened: {bytearray,
     propagated::time: double,propagated::x:
     double,propagated::y: double,propagated::z: double}
-{% endhighlight %}
+```
 
 Notice that the flattened relation has an unnamed, untyped field for its first item.
 This is the satellite number, but Pig does not know its type or name so it treats it as an
 untyped byte array. We can fix this by using the AS operator to specify its name and type.
 Looking at the data using the dump flattened command shows the positions.
 
-{% highlight pig %}
+```pig
 (38833,2454992.9599999785,2.278136816721697E7,7970303.195970464,-1.1066153998664627E7)
 (38833,2454992.9699999783,2.2929498370345607E7,1.0245812732430315E7,-8617450.742994161)
 (38833,2454992.979999978,2.2713614118860725E7,1.2358665040019082E7,-6031915.392826946)
 (38833,2454992.989999978,2.213715624812226E7,1.4275325605036272E7,-3350605.7983842064)
 (38833,2454992.9999999776,2.1209296863515433E7,1.5965381866069315E7,-616098.4598421039)
-{% endhighlight %}
+```
 
 At this point we can store off the propagated data so we can use it for future processing in Pig or in an
 external program. Using `STORE` flattened into 'propagated' using `PigStorage(',')`
@@ -326,17 +326,17 @@ stores the data in the folder ‘propagated’ using comma-separated value files
 storage options as well such as HBase or JSON. Pig also allows development of custom storage drivers.
 We can load this data back into Pig using `LOAD`.
 
-{% highlight pig %}
+```pig
 grunt> propagated = LOAD 'propagated'
     using PigStorage(',') as (satelliteNumber:int, time:double, x:double, y:double, z:double);
-{% endhighlight %}
+```
 
 Using the ‘AS’ operator allows us to define the schema for the data.
 
-{% highlight pig %}
+```pig
 grunt> DESCRIBE propagated;
 propagated: {satelliteNumber: int,time: double,x: double,y: double,z: double}
-{% endhighlight %}
+```
 
 # Conclusion
 Overall, Pig made it easy to process orbital data without needing to resort to cumbersome custom MapReduce code.
