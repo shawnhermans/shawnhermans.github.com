@@ -42,11 +42,11 @@ come with three lines. The first line is the name of the object and the other tw
 orbital elements. A typical file looks like this.
 
     GPS BIIA-10 (PRN 32)
-    1 20959C 90103A   13019.82648148  .00000000  00000-0  00000-0 0   196
-    2 20959  54.4316 229.8752 0117400 335.3880   9.5445  2.00552544    13
+    1 20959C 90103A   13019.82648148  .00000000  00000-0  ...
+    2 20959  54.4316 229.8752 0117400 335.3880   9.5445 ...
     GPS BIIA-14 (PRN 26)
-    1 22014C 92039A   13019.82648148  .00000000  00000-0  00000-0 0   190
-    2 22014  56.1808 290.0954 0208678  69.4189  64.1323  2.00566165    17
+    1 22014C 92039A   13019.82648148  .00000000  00000-0  ...
+    2 22014  56.1808 290.0954 0208678  69.4189  64.1323  ...
     .
     .
     .
@@ -160,7 +160,6 @@ Create the files `tleUDFs.py` and `tleparser.py` in this folder and restart the 
 grunt> gps = LOAD 'gps-ops.tsv' USING PigStorage()
     AS (name:chararray, line1:chararray, line2:chararray);
 grunt> REGISTER 'tleUDFs.py' USING jython AS myfuncs;
-The parseTle UDF is available to Pig under the myfuncs namespace
 grunt> parsed = FOREACH gps GENERATE myfuncs.parseTle(*);
 ```
 This Pig command goes through each of the relations in gps and applies the `parseTle` UDF.
@@ -168,12 +167,16 @@ The parsed data is now a map of key/value pairs. The following is an example par
 
 ```
 (
-    [bstar#,arg_of_perigee#333.0924,mean_motion#2.00559335,
-    element_number#72,epoch_year#2013,inclination#54.9673,
-    mean_anomaly#26.8787,rev_at_epoch#210,mean_motion_ddot#0.0,
-    eccentricity#5.354E-4,two_digit_year#13,international_designator#12053A,
-    classification#U,epoch_day#17.78040066,satellite_number#38833,
-    name#GPS BIIF-3  (PRN 24),mean_motion_dot#-1.8E-6,ra_of_asc_node#344.5315]
+    [bstar#,arg_of_perigee#333.0924,
+    mean_motion#2.00559335, element_number#72,
+    epoch_year#2013,inclination#54.9673,
+    mean_anomaly#26.8787,rev_at_epoch#210,
+    mean_motion_ddot#0.0, eccentricity#5.354E-4,
+    two_digit_year#13,international_designator#12053A,
+    classification#U,epoch_day#17.78040066,
+    satellite_number#38833,
+    name#GPS BIIF-3  (PRN 24),
+    mean_motion_dot#-1.8E-6,ra_of_asc_node#344.5315]
 )
 ```
 
@@ -182,7 +185,8 @@ Having the data parsed, means we can use the power of Pig to filter, process, an
 The following is an example of using the `FILTER` command to find all orbits with inclination between 53 and 56.
 
 ```
-filtered = FILTER parsed BY (params#'inclination' > 53) AND (params#'inclination' < 56);
+filtered = FILTER parsed BY (params#'inclination' > 53) 
+    AND (params#'inclination' < 56);
 ```
 
 At this point, we can store the results of this processing to the filesystem using the `STORE` command.
@@ -209,7 +213,9 @@ but change the last line to include the following.
 ```
 REGISTER 'tleUDFs.py' USING jython AS tleUDFs;
 
-gps = LOAD '$input' USING PigStorage() AS (name:chararray, line1:chararray, line2:chararray);
+gps = LOAD '$input' USING PigStorage() AS 
+    (name:chararray, line1:chararray, line2:chararray);
+    
 parsed = FOREACH gps GENERATE tleUDFs.parseTle(*);
 
 filtered = FILTER parsed BY
@@ -248,22 +254,45 @@ The easiest way to do this is copying the JARs into the `$PIG_HOME/lib` director
 ```python
 from jsattrak.objects import SatelliteTleSGP4
 
-@outputSchema("propagated:bag{positions:tuple(time:double, x:double, y:double, z:double)}")
-def propagateTleECEF(name,line1,line2,start_time,end_time,number_of_points):
+@outputSchema("""
+    propagated:bag{
+        positions:tuple(
+            time:double, 
+            x:double, 
+            y:double, 
+            z:double
+        )
+    }
+""")
+def propagateTleECEF(
+    name,
+    line1,
+    line2,
+    start_time,
+    end_time,
+    number_of_points
+    ):
+    
     try:
         satellite = SatelliteTleSGP4(name, line1, line2)
     except:
         return None
 
     ecef_positions = []
+    
+    end_time = float(end_time)
+    start_time = float(start_time)
+    number_of_points = float(number_of_points)
 
-    increment = (float(end_time)-float(start_time))/float(number_of_points)
+    increment = (end_time-start_time)/number_of_points
     current_time = start_time
 
     while current_time <= end_time:
         try:
             positions = [current_time]
-            positions.extend(list(satellite.calculateJ2KPositionFromUT(current_time)))
+            current_positions = satellite.calculateJ2KPositionFromUT(current_time)
+            current_positions = list(current_positions)
+            positions.extend(current_positions)
             ecef_positions.append(tuple(positions))
         except:
             pass
@@ -284,8 +313,11 @@ function to `tleUDFs.py`, we are ready to propagate some orbits.
 grunt > REGISTER 'tleUDFs.py' USING jython AS myfuncs;
 grunt> gps = LOAD 'gps-ops.tsv' USING PigStorage()
     AS (name:chararray, line1:chararray, line2:chararray);
-grunt> propagated = FOREACH gps GENERATE myfuncs.parseTle(name, line1, line2),
-    myfuncs.propagateTleECEF(name, line1, line2, 2454992.0, 2454993.0, 100);
+grunt> propagated = FOREACH gps GENERATE 
+    myfuncs.parseTle(name, line1, line2),
+    myfuncs.propagateTleECEF(
+        name, line1, line2, 2454992.0, 2454993.0, 100
+        );
 grunt> flattened = FOREACH propagated GENERATE
     params#'satellite_number', FLATTEN(propagated);
 ```
@@ -328,7 +360,8 @@ We can load this data back into Pig using `LOAD`.
 
 ```
 grunt> propagated = LOAD 'propagated'
-    using PigStorage(',') as (satelliteNumber:int, time:double, x:double, y:double, z:double);
+    using PigStorage(',') AS 
+    (satelliteNumber:int, time:double, x:double, y:double, z:double);
 ```
 
 Using the ‘AS’ operator allows us to define the schema for the data.

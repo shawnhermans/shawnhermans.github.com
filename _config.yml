@@ -1,14 +1,19 @@
-name: Shawn's Blog
-description: "Shawn's wonder blog about data. More to follow.  "
-url: "http://shawnhermans.github.io/"
+# Dependencies
+markdown:         redcarpet
+pygments:         true
 
-contact:
-  name: Shawn Hermans
-  github: shawnhermans
-  twitter: shawnhermans
-  linkedin: shawnhermans
-  quora: Shawn-Hermans
-  email: shawnhermans@gmail.com
+# Permalinks
+permalink:        pretty
 
-markdown: redcarpet
-pygments: true
+# Setup
+title:            Drowning in Data
+tagline:          'unstructured and denormalized'
+description:      "A blog about data and one man's struggle to make sense of it all."
+url:              http://shawnhermans.github.io
+baseurl:          /
+
+author:
+  name:           'Shawn Hermans'
+  url:            https://twitter.com/shawnhermans
+
+paginate:         5
