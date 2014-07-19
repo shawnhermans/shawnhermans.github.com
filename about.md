@@ -6,10 +6,10 @@ Hi\! My name is Shawn Hermans. I live, work, and play in Omaha, NE with my
 wife, [Jammie Hermans](http://jammiehermans.blogspot.com/), my four kids, Parker,
 Regan, Jabe, and Dexter, and our dog Tori.  
 
-I have wore many hats in my professional life.  Those include mathematician, data architect,
+I have worn many hats in my professional life.  Those include mathematician, data architect,
 programmer, project manager, consultant, operations researcher, data engineer, and data scientist.  
 
-When you strip away those roles and titles, 
+When you strip away these roles and titles, 
 I am just one more person trying to make some sense of this world.  For me that means looking 
 through data from multiple sources and points of view.  Data comes in all sorts of different forms.
 Sometimes that data is stored on HDFS in a Hadoop cluster, other times it is in a book or a song.  
