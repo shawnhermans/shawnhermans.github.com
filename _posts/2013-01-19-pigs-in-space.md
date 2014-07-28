@@ -12,6 +12,8 @@ If you are an orbital analyst and want to know how to easily process data on a H
 this article is for you. If you are just interested in Pig, this post should give you a good idea of
 how to use Pig and write Jython-based Pig user defined functions.
 
+<!--break-->
+
 ## Setting Up Pig
 Pig can run in either local mode or Hadoop mode. I am not going to go into great detail on how to
 setup Pig using Hadoop mode. Hadoop mode requires a fully configured Hadoop cluster with MapReduce version 1.

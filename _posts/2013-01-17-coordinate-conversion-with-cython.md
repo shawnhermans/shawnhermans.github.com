@@ -11,6 +11,8 @@ I couldn’t find any native Python libraries, so I decided to create a simple l
 [pycoordconvert](https://github.com/shawnhermans/pycoordconvert). I decided this was a good opportunity
 to learn more about [Cython](http://cython.org/).
 
+<!--break-->
+
 I created two versions of the code. One with Python and one with Cython extensions.
 This is the Python version of the code. It uses the built-in Python math libraries and does not
 use any explicitly declared types.
