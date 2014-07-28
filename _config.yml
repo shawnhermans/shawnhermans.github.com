@@ -17,3 +17,6 @@ author:
   url:            https://twitter.com/shawnhermans
 
 paginate:         5
+
+gems:
+  - jekyll-sitemap
