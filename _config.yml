@@ -7,6 +7,7 @@ permalink:        pretty
 
 # Setup
 title:            Drowning in Data
+name:             Drowning in Data
 tagline:          'unstructured and denormalized'
 description:      "I like finding shiny things in data!"
 url:              http://blog.shawnhermans.com
