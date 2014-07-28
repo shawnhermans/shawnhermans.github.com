@@ -1,6 +1,6 @@
 # Dependencies
 markdown:         redcarpet
-pygments:         true
+highlighter:      pygments
 
 # Permalinks
 permalink:        pretty
@@ -9,7 +9,7 @@ permalink:        pretty
 title:            Drowning in Data
 tagline:          'unstructured and denormalized'
 description:      "I like finding shiny things in data!"
-url:              http://shawnhermans.github.io
+url:              http://blog.shawnhermans.com
 baseurl:          /
 
 author:
