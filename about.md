@@ -15,7 +15,7 @@ through data from multiple sources and points of view.  Data comes in all sorts 
 Sometimes that data is stored on HDFS in a Hadoop cluster, other times it is in a book or a song.  
 
 Ultimately, I realize no matter how much data I look through, I am never going to understand it all. 
-This quote [Isaac Newton](http://www.brainyquote.com/quotes/quotes/i/isaacnewto387031.html#dkKzj7bkTlQGJkAW.99)
+This quote by [Isaac Newton](http://www.brainyquote.com/quotes/quotes/i/isaacnewto387031.html#dkKzj7bkTlQGJkAW.99)
 describes my feelings much better than I could. 
 
 > I do not know what I may appear to the world, but to myself I seem to have been 
