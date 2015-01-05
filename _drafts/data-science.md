@@ -36,3 +36,17 @@ business analyst, ...
 ## Why Do I Still Use the Term?
 Same reason I use the term Big Data, 
 
+Examples
+
+
+# Meta Analysis
+
+http://www.datascienceweekly.org/newsletters
+http://www.datatau.com/
+
+http://www.technologyreview.com/view/532806/yahoo-labs-algorithm-identifies-creativity-in-6-second-vine-videos/
+
+# Knowledge/Examples
+
+Feature hashing
+
