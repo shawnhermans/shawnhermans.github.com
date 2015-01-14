@@ -18,8 +18,12 @@ User interface design
 
 
 ## Core Concepts
+Not talking about the [DIKW Pyramid](http://en.wikipedia.org/wiki/DIKW_Pyramid)
+
+
+
 * Information
-* Entropy
+* Entropy - How much possible information? How much uncertainity? 
 * Predictability
 * Message
 * Perception
@@ -35,6 +39,8 @@ User interface design
 * Information answers a question
 * Knowledge is understanding
 * Data 
+* Interpretation
+* 
 
 The Wikipedia page on [Information](http://en.wikipedia.org/wiki/Information)
 
@@ -44,6 +50,8 @@ It also explains why we have sex.  DNA encodes information.  Sex allows useful m
 [Physical information](http://en.wikipedia.org/wiki/Physical_information) distinguish between states.  If system A has N states and system B has M states, the combined systems have information I(AB) = log(NM) = log(N) + log(M).  
 
 Entropy - Amount of information that is missing before reception of the message. Measure of the unpredictability of information content.  Low entropy systems are predictable, whereas high entropy systems are not.  Entropy is also related to redudancy.  
+
+Information is about probabilities
 
 A message is an event or sample drawn from a data stream.  
 
