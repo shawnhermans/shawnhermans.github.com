@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "Coordinate Conversion in Cython"
-
-tags: [cython, coordinate conversion]
+author: Shawn Hermans
+date: 2013-01-17 12:00:00 -0600
+categories: [python,cython]
 ---
 
 One of my projects required conversion of [Earth Centered Earth Fixed](http://en.wikipedia.org/wiki/ECEF) coordinates

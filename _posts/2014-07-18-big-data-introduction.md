@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "Heartland Meetup Group: Intro to Big Data"
-description: "I gave a talk on Big Data to to the Heartland Big Data Meetup Group."
-tags: [big data, machine learning, data science, heartland big data] 
+author: Shawn Hermans
+date: 2014-07-18 14:00:00 -0600
+categories: [big-data,data-science] 
 ---
 
 Yesterday I gave an introductory talk on Big Data to 

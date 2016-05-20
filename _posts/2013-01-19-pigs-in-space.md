@@ -1,8 +1,9 @@
 ---
 layout: post
 title: "Pigs in Space"
-description: "Introduction to Pig with Space Data"
-tags: [hadoop, pig, tle, space catalog] 
+author: Shawn Hermans
+date: 2013-01-19 22:00:00 -0600
+categories: [hadoop,pig] 
 ---
 
 ## Introduction

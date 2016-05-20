@@ -1,22 +1,12 @@
-# Dependencies
-markdown:         redcarpet
-highlighter:      pygments
-
-# Permalinks
-permalink:        pretty
-
-# Setup
-title:            Shawn Hermans
-name:             Shawn Hermans
-#tagline:          'unstructured and denormalized'
-#description:      "I like shiny things!"
+title: Shawn Hermans
+email: shawnhermans@gmail.com
+description: >
+  Personal blog of Shawn Hermans.
 url:              http://blog.shawnhermans.com
-baseurl:          /
+github_username:  shawnhermans
 
-author:
-  name:           'Shawn Hermans'
+markdown: kramdown
+kramdown:
+  input: GFM
 
-paginate:         5
-
-gems:
-  - jekyll-sitemap
+permalink: pretty

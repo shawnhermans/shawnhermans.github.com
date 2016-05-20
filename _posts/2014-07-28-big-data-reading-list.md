@@ -1,14 +1,13 @@
 ---
 layout: post
 title: "My Data Reading List"
-description: "Stuff I read about data."
-tags: [big data, machine learning, data science, hadoop, reading list] 
+author: Shawn Hermans
+date: 2014-07-28 16:00:00 -0600
+categories: [big-data,data-science]
 ---
 
 These are some of the books and blogs I have read in the last few years to get up to speed
 on Big Data, data science, and related concepts. 
-
-<!--break-->
 
 ## Hadoop
 * [Hadoop the Definitive Guide](http://amzn.com/1449311520) - As the title indicates, this is the definitive guide for
