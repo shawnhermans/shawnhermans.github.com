@@ -6,16 +6,15 @@ highlighter:      pygments
 permalink:        pretty
 
 # Setup
-title:            Drowning in Data
-name:             Drowning in Data
-tagline:          'unstructured and denormalized'
-description:      "I like finding shiny things in data!"
+title:            Shawn Hermans
+name:             Shawn Hermans
+#tagline:          'unstructured and denormalized'
+#description:      "I like shiny things!"
 url:              http://blog.shawnhermans.com
 baseurl:          /
 
 author:
   name:           'Shawn Hermans'
-  url:            https://twitter.com/shawnhermans
 
 paginate:         5
 
