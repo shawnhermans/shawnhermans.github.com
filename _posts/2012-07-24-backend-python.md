@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How can I become a web developer using Python on the back end?"
+title: "Python Backend Development"
 author: Shawn Hermans
 date: 2012-07-24 12:00:00 -0600
 categories: [python, django, backend-development]
@@ -10,7 +10,7 @@ Originally posted as an answer to [How can I become a web developer using Python
 
 I can't give you a recommendation on a holistic class, but I can give you some recommendations on individual pieces/parts.  First, I think that Django is a great framework for learning Python web programming.  It has great documentation and support.  
 
-Working through the tutorial will give you a good understanding of what Django can do.  Also, reading through the Django book will give you a good understanding of the additional features of Django. 
+Working through the tutorial will give you a good understanding of what Django can do.  Also, reading through the Django book will give you a good understanding of the additional features of Django.
 
 My personal opinion is to start with a project in mind and start coding.  PyCharm is a good editor and it is only $29 for students. It even gives you some good tools for CSS and HTML. Otherwise, PyDev is a pretty good Eclipse based editor.  
 
