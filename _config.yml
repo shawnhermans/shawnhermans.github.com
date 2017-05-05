@@ -4,9 +4,11 @@ description: >
   Personal blog of Shawn Hermans.
 url:              http://blog.shawnhermans.com
 github_username:  shawnhermans
-
+theme: minima
 markdown: kramdown
-kramdown:
-  input: GFM
-
 permalink: pretty
+gems:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock
