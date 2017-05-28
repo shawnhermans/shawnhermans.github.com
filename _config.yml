@@ -6,7 +6,7 @@ url:              http://blog.shawnhermans.com
 github_username:  shawnhermans
 theme: minima
 markdown: kramdown
-permalink: date
+permalink: /:year/:month/:day/:title.html
 gems:
   - jekyll-feed
 exclude:
