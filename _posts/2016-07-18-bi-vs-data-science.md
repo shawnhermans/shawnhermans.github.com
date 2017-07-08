@@ -15,7 +15,7 @@ In my experience, here are a few key differences between data science and busine
 
 1. Choice of tools - A data scientist often works with programming languages such as R or Python. A business analyst will probably be more comfortable with graphical tools like Tableau, SAS, or Excel.
 2. Type of data - Business intelligence typically uses structured data found in traditional relational databases, data warehouses, or spreadsheets. Data science uses non-traditional sources of data. This might include HTML scraped from websites, data obtained from web APIs, metadata extracted from files, and many other sources.
-3. Roles and responsibilities - In a typical BI environment, ETL is the responsibility of the information technology department, while business analysis is the responsibility of the business units. Data science combines those into a single role. A data scientist handles ever phase of the data transformation pipeline.
+3. Roles and responsibilities - In a typical BI environment, ETL is the responsibility of the information technology department, while business analysis is the responsibility of the business units. Data science combines those into a single role. A data scientist handles every phase of the data transformation pipeline.
 4. Data analysis and extraction methods - A data scientist is more likely to use more involved data analysis and extraction methods.
 5. Not just business - Data science is not limited to business problems. The tools and techniques are applied outside of the domain of business. That being said, a business analyst might have much more knowledge on a particular business area.
 
