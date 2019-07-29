@@ -13,10 +13,10 @@
         <meta name="description" content="A data scientist's journey through data hell and back again">
       
       
-        <link rel="canonical" href="https://www.shawnhermans.com/">
+        <link rel="canonical" href="https://www.shawnhermans.com/posts/2012-08-30-postgis-v-spatialite/">
       
       
-        <meta name="author" content="Shawn Hermans">
+        <meta name="author" content="S">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
       
-        <title>Shawn Hermans</title>
+        <title>PostGIS vs Spatialite</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -66,7 +66,7 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
     
@@ -88,10 +88,6 @@
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#shawn-hermans" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
     
     
       <header class="md-header" data-md-component="header">
@@ -115,7 +111,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Home
+                PostGIS vs Spatialite
               
             </span>
           
@@ -168,7 +164,7 @@
         
   <li class="md-tabs__item">
     
-      <a href="." title="Home" class="md-tabs__link md-tabs__link--active">
+      <a href="../.." title="Home" class="md-tabs__link md-tabs__link--active">
         Home
       </a>
     
@@ -202,20 +198,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
-    
   </li>
 
     
@@ -226,29 +213,19 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                <h1 id="shawn-hermans">Shawn Hermans<a class="headerlink" href="#shawn-hermans" title="Permanent link">&para;</a></h1>
-<p>Hi! My name is Shawn Hermans. I plan to update this site later, but that might not happen. </p>
+                  <h1>PostGIS vs Spatialite</h1>
+                
+                <p>Originally posted as an answer to <a href="https://www.quora.com/How-does-PostGIS-compare-to-Spatialite/answer/Shawn-Hermans?srid=hLq3">How does PostGIS compare to Spatialite?</a></p>
+<p>PostGIS offers many more features. <a href="https://docs.djangoproject.com/en/dev/ref/contrib/gis/db-api/#compatibility-tables">GeoDjango's documentation</a> has a comparison of the spatial features it supports from each database.  Please note that this is not a direct comparison of the databases. Rather it reflects what GeoDjango supports.  However, it will still give you a rough idea of the differences between the two.</p>
+<p>The choice between PostGIS and Spatialite comes down to your particular use case.  Spatialite is probably the best choice when you need a standalone, embedded database.  For example, maybe you are building a mobile or desktop application.  Also, Spatialite may be used during the development of a web-based application. I have used it during the development of GeoDjango applications.  </p>
+<p>PostGIS is the better choice if you need high read/write rates, multiple database users, clustering, network accessibility and any other standard database feature.  </p>
+<p>Regarding Spatialite's licensing, the library is licensed under the LGPL and the GUI tools are licensed under the GPL (the same license as MySQL).   This means in most cases, you do not need to worry about the viral nature of GPL.</p>
                 
                   
                 
@@ -287,9 +264,9 @@
       
     </div>
     
-      <script src="assets/javascripts/application.245445c6.js"></script>
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
     
   </body>

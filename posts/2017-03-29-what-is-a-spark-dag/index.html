@@ -13,10 +13,10 @@
         <meta name="description" content="A data scientist's journey through data hell and back again">
       
       
-        <link rel="canonical" href="https://www.shawnhermans.com/">
+        <link rel="canonical" href="https://www.shawnhermans.com/posts/2017-03-29-what-is-a-spark-dag/">
       
       
-        <meta name="author" content="Shawn Hermans">
+        <meta name="author" content="S">
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -37,18 +37,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="assets/images/favicon.png">
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
     
     
       
-        <title>Shawn Hermans</title>
+        <title>What is DAG in Spark?</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.0284f74d.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.01803549.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
       
       
         
@@ -57,7 +57,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -66,7 +66,7 @@
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
     
     
     
@@ -88,10 +88,6 @@
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
-    
-      <a href="#shawn-hermans" tabindex="1" class="md-skip">
-        Skip to content
-      </a>
     
     
       <header class="md-header" data-md-component="header">
@@ -115,7 +111,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Home
+                What is DAG in Spark?
               
             </span>
           
@@ -168,7 +164,7 @@
         
   <li class="md-tabs__item">
     
-      <a href="." title="Home" class="md-tabs__link md-tabs__link--active">
+      <a href="../.." title="Home" class="md-tabs__link md-tabs__link--active">
         Home
       </a>
     
@@ -202,20 +198,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
       Home
     </a>
-    
   </li>
 
     
@@ -226,29 +213,24 @@
               </div>
             
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                <h1 id="shawn-hermans">Shawn Hermans<a class="headerlink" href="#shawn-hermans" title="Permanent link">&para;</a></h1>
-<p>Hi! My name is Shawn Hermans. I plan to update this site later, but that might not happen. </p>
+                  <h1>What is DAG in Spark?</h1>
+                
+                <p>Originally posted as an answer to <a href="https://www.quora.com/What-is-DAG-in-Spark-and-how-does-it-work/answer/Shawn-Hermans?srid=hLq3">What is DAG in Spark, and how does it work?</a></p>
+<p>As Rajagopal ParthaSarathi pointed out, a DAG is a directed acyclic graph. They are commonly used in computer systems for task execution.</p>
+<p>In this context, a graph is a collection of nodes that are connected by edges. In the case of Hadoop and Spark, the <em>nodes</em> represent executable tasks, and the <em>edges</em> are task dependencies. Think of the DAG like a flow chart that tells the system which tasks to execute and in what order. The following is a simple example of an <em>undirected</em> graph of tasks.</p>
+<p><img alt="undirected graph" src="https://qph.ec.quoracdn.net/main-qimg-4d31a64225c37d607f102af60602b613" /></p>
+<p>This graph is undirected because there it does not capture which node is the start node and which is the end node. In other words, this graph does not tell me if the reduce task should be feeding the map tasks or vice versa. The next graph shows a <em>directed</em> graph of tasks.</p>
+<p><img alt="directed graph of tasks" src="https://qph.ec.quoracdn.net/main-qimg-9c013afa2c6f72ef2b21d04be194f100.webp" /></p>
+<p>A directed graph gives an unambiguous direction for each edge. This means that we know that the map tasks feed into the reduce task, rather than the other way around. This property is essential for executing complex workflows since we need to know which tasks should be executed in which order.</p>
+<p>Lastly, the graph is <em>acyclic</em>, because it does not contain any cycles. A cycle happens when it is possible to loop back to a previous node. Cycles are useful for tasks involving recursion but not as good for large-scale distributed systems. The following are two examples of graphs with cycles.</p>
+<p><img alt="cyclic-graph-example1" src="https://qph.ec.quoracdn.net/main-qimg-059bd48c6284c4be366c0618c81c3588.webp" /></p>
+<p><img alt="cyclic-graph-example2" src="https://qph.ec.quoracdn.net/main-qimg-f8c9c17a2204bcdaa17c62c9d21cc030.webp" /></p>
                 
                   
                 
@@ -287,9 +269,9 @@
       
     </div>
     
-      <script src="assets/javascripts/application.245445c6.js"></script>
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
       
     
   </body>
